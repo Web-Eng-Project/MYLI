@@ -1,0 +1,73 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Style the header*/
+header {
+	background-color: #2c3e50;
+	padding: 25px;
+}
+
+/*Create two columns that floats next to each other*/
+/*right column*/
+nav {
+	float: left;
+	padding: 25px;
+	background-color: #708090;
+	width: 30%;
+}
+
+nav img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*left column*/
+article {
+	float:left;
+	padding: 20px;
+	width: 70%;
+	background-color: white;
+}
+
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+
+
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+
+</style>
