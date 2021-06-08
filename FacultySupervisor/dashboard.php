@@ -13,12 +13,17 @@
 <link rel="stylesheet" type="text/css" href="ann.css">
 <style>
 .vertical-menu {
-  width: 420px;
+  border: 5px solid black;
+  margin:20px;
+  padding:100px;
+  width:auto;
+  
 }
 input[type="checkbox"] {
 		transform:scale(2, 2);
 }
 div {
+  background-image: url('Latihan_Industri.png');
   width: 1500px;
   padding: 10px;
   border: 2px solid black;
@@ -60,51 +65,26 @@ table.center {
   <p style="color:white;">Email: Nur_Maznah77@email.com</p>
   <p style="color:white;">Faculty: FKOM</p>
   <hr></hr>
-    <div class="vertical-menu">
-    <a href="./dashboard.php">Lecturer Dashboard</a>
+    
+	</nav>
+	
+	<article>
+	<h1 style="font-size: 200%">Welcome to MyLI Web</h1>
+    <h1 style="font-size: 100%">You are at the Admin Dashboard</h1>
+	<body>
+	<center>
+        <table>
+        <div class="vertical-menu">
      <a href="./view.php">Student List</a>
      <a href="#">LogBook Progress</a>
      <a href="#">Performance Mark</a>
      <a href="./Report.php">Report</a>
     </div>
-	</nav>
-	
-	<article>
-	<h1 style="font-size: 200%">Student List</h1>
-	<body>
-	<center>
-        <table>
-            <tr>
-					<th>List ID</th>
-					<th>Student ID</th>
-					<th>Name</th>
-					<th>Phone Number</th>
-					<th>Email</th>
-					<th>Company details</th>
-					<th>Address</th>
-			</tr>
-			<?php
-          while ($row=mysqli_fetch_array($rs_display)){
-      ?>
-            <tr style="text-align:center";>
-            <td colspan="1"><?php echo $row['List_ID']?></td>
-            <td colspan="1"><?php echo $row['Student_Id']?></td>
-            <td colspan="1"><?php echo $row['Name']?></td>
-            <td colspan="1"><?php echo $row['Phone_Num']?></td>
-						<td colspan="1"><?php echo $row['Email']?></td>
-						<td colspan="1"><?php echo $row['Company_Name']?></td>
-						<td colspan="1"><?php echo $row['Company_Address']?></td>
-            </tr>
-			<?php
-             }
-      ?>
-			
+						
         </table>
         <br>
     </center>
 	</body>
-                
-  <br><button onclick="location.href='UpdateList.php'">Add Student</button><button onclick="location.href='DeleteStudent.php'">Delete Student</button><br>
 	</form>
 	</article>
 </section>

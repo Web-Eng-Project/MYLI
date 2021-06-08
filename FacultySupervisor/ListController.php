@@ -47,10 +47,11 @@ input[type="checkbox"] {
   <p style="color:white;">Faculty: FKOM</p>
   <hr></hr>
     <div class="vertical-menu">
-	 <a href="StuLec.html">Student List</a>
+     <a href="./dashboard.php">Lecturer Dashboard</a>
+     <a href="./view.php">Student List</a>
      <a href="#">LogBook Progress</a>
      <a href="#">Performance Mark</a>
-     <a href="#">Report</a>
+     <a href="./Report.php">Report</a>
     </div>
    </nav>
 	<center>

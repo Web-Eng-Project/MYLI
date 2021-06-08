@@ -1,9 +1,3 @@
-<?php
-    $link = mysqli_connect("localhost", "root", "") or die(mysqli_connect_error());
-    mysqli_select_db($link, "myli") or die(mysqli_error($link));
-    $display = "SELECT * FROM `studentlist`";
-    $rs_display = mysqli_query($link, $display) or die(mysqli_error($link));
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,12 +12,7 @@
 input[type="checkbox"] {
 		transform:scale(2, 2);
 }
-div {
-  width: 1500px;
-  padding: 10px;
-  border: 2px solid black;
-  margin: 0;
-}
+
 table class = "center"{
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -74,37 +63,47 @@ table.center {
 	<body>
 	<center>
         <table>
-            <tr>
-					<th>List ID</th>
-					<th>Student ID</th>
-					<th>Name</th>
-					<th>Phone Number</th>
-					<th>Email</th>
-					<th>Company details</th>
-					<th>Address</th>
-			</tr>
+        <h1><b>Delete Order</b></h1>
+        <div>
+            <form action="" method="post">
+                <table style="border: 5px solid black;margin:20px;padding:100px; width:auto;">
+                    <tr>
+                        <th>Enter Order ID to delete</th>
+                    </tr>
+                    <tr>
+                        <td><label for="List_ID">List ID:</label></td>
+                        <td colspan="5"><input type="text" name="List_ID"/></td>
+                        <td colspan="5"><input type="submit" name="delete" value="Delete ID" /></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
 			<?php
-          while ($row=mysqli_fetch_array($rs_display)){
-      ?>
-            <tr style="text-align:center";>
-            <td colspan="1"><?php echo $row['List_ID']?></td>
-            <td colspan="1"><?php echo $row['Student_Id']?></td>
-            <td colspan="1"><?php echo $row['Name']?></td>
-            <td colspan="1"><?php echo $row['Phone_Num']?></td>
-						<td colspan="1"><?php echo $row['Email']?></td>
-						<td colspan="1"><?php echo $row['Company_Name']?></td>
-						<td colspan="1"><?php echo $row['Company_Address']?></td>
-            </tr>
-			<?php
-             }
-      ?>
+                    $link = mysqli_connect("localhost", "root", "") or die(mysqli_connect_error());
+                    mysqli_select_db($link, "myli") or die(mysqli_error());
+                     
+                    if(isset($_POST['delete']))
+                    {
+                        $List_ID = $_POST['List_ID'];
+                     
+                    $query = "DELETE FROM `studentlist` WHERE List_ID='$List_ID' ";
+                    $query_run = mysqli_query($link,$query);
+                    
+                    if($query_run)
+                    {
+                        echo "Records were deleted successfully.";
+                    } else
+                    {
+                        echo "ERROR: Could not able to execute.";
+                    }
+                    }
+                ?>
 			
         </table>
         <br>
     </center>
-	</body>
-                
-  <br><button onclick="location.href='UpdateList.php'">Add Student</button><button onclick="location.href='DeleteStudent.php'">Delete Student</button><br>
+	</body>           
+	<input type="button" value="Student List" onclick="location.href='view.php'">
 	</form>
 	</article>
 </section>

@@ -9,7 +9,7 @@
 </head>
 <body>
     <ul>
-        <li> <a href="./view.php">Student List</a> </li>
+        <li> <a href="./dashboard.php">Lecturer Dashboard</a> </li>
     </ul>
 </body>
 </html>

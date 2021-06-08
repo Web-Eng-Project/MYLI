@@ -1,7 +1,7 @@
 <?php
     $link = mysqli_connect("localhost", "root", "") or die(mysqli_connect_error());
     mysqli_select_db($link, "myli") or die(mysqli_error($link));
-    $display = "SELECT * FROM `studentlist`";
+    $display = "SELECT * FROM `report`";
     $rs_display = mysqli_query($link, $display) or die(mysqli_error($link));
 ?>
 <!DOCTYPE html>
@@ -73,38 +73,63 @@ table.center {
 	<h1 style="font-size: 200%">Student List</h1>
 	<body>
 	<center>
-        <table>
-            <tr>
-					<th>List ID</th>
-					<th>Student ID</th>
-					<th>Name</th>
-					<th>Phone Number</th>
-					<th>Email</th>
-					<th>Company details</th>
-					<th>Address</th>
-			</tr>
-			<?php
-          while ($row=mysqli_fetch_array($rs_display)){
-      ?>
-            <tr style="text-align:center";>
-            <td colspan="1"><?php echo $row['List_ID']?></td>
-            <td colspan="1"><?php echo $row['Student_Id']?></td>
-            <td colspan="1"><?php echo $row['Name']?></td>
-            <td colspan="1"><?php echo $row['Phone_Num']?></td>
-						<td colspan="1"><?php echo $row['Email']?></td>
-						<td colspan="1"><?php echo $row['Company_Name']?></td>
-						<td colspan="1"><?php echo $row['Company_Address']?></td>
-            </tr>
-			<?php
-             }
-      ?>
-			
-        </table>
-        <br>
-    </center>
+<h1>Report</h1>
+</center>
+<form name="Form">
+<table style="width:100%">
+
+<?php
+        while ($row=mysqli_fetch_array($rs_display)){ 
+          ?>
+
+  <tr>
+    <th rowspan="3" style="width:70px"></th>
+    <th><label for="id">Report ID:</label> &nbsp;
+    <?php echo $row['Report_Id']; ?>
+    </th> 
+    <th><label for="id">Student ID:</label> &nbsp;
+    <?php echo $row['Student_Id']; ?>
+    </th>
+  </tr>
+  <tr>
+    <th><label for="id">Lecturer ID:</label> &nbsp;
+    <?php echo $row['Lecturer_Id']; ?>
+    </th>
+    <th><label for="mark">Total Mark</label> &nbsp;
+    <?php echo $row['Total_Mark']; ?>
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <table>
+      <tr>
+        <th>Performance Mark</th>
+        <td style="width: 20%;"><input style="height: 30px;" type="number" id="performance_mark" name="performance_mark"></td>
+      </tr>
+      <tr>
+        <th>Attendance Mark</th>
+        <td style="width: 20%;"><input style="height: 30px;" type="number" id="attendance_mark" name="attendance_mark"></td>
+      </tr>
+      <tr>
+        <th>Total Mark</th>
+        <td style="width: 20%;"><p id="totalmark"></p></td>
+      </tr>
+      </table>
+    </td>
+    <td><label for="report_comment">Comment:<br>            </label>
+         <input style="width: 100%; height: 30px;" type="text" id="report_comment" name="report_comment"><br><br>
+      <input type="button" value="Internship Marking Result" onclick = "mark()" />
+      <p id="mark"></p>
+    </td>
+  </tr>
+
+  <?php
+        }
+          ?>
+
+</table>
+</form>
 	</body>
-                
-  <br><button onclick="location.href='UpdateList.php'">Add Student</button><button onclick="location.href='DeleteStudent.php'">Delete Student</button><br>
 	</form>
 	</article>
 </section>
