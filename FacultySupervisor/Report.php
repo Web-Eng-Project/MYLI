@@ -11,34 +11,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="ann.css">
+<link rel=stylesheet type="text/css" href="./stylesheet/style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 .vertical-menu {
   width: 420px;
 }
 input[type="checkbox"] {
 		transform:scale(2, 2);
-}
-div {
-  width: 1500px;
-  padding: 10px;
-  border: 2px solid black;
-  margin: 0;
-}
-table class = "center"{
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 50%;
-}
-
-td, th {
-  border: 4px solid #dddddd;
-  text-align: center;
-  padding: 3px;
-}
-table.center {
-  margin-top:200px;
-  margin-left: auto; 
-  margin-right: auto;
 }
 </style>
 <script type="text/javascript">
@@ -72,72 +54,126 @@ table.center {
 	<article>
 	<h1 style="font-size: 200%">Student List</h1>
 	<body>
-	<center>
-<h1>Report</h1>
-</center>
-<form name="Form">
-<table style="width:100%">
+	<div class="container">
+  <div class="col-lg-4">
+  <h2>Supervisor Report</h2>
+  <form action="" name="form1" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+      <label for="pwd">Report ID</label>
+      <input type="text" class="form-control" id="Report_Id" placeholder="Enter Report ID" name="Report_Id" required style="...">
+  </div>
+    <div class="form-group">
+      <label for="email">Student Name</label>
+      <input type="text" class="form-control" id="Name" placeholder="Enter Student Name" name="Name" required style="...">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Student ID</label>
+      <input type="text" class="form-control" id="Student_Id" placeholder="Enter Student Matric ID" name="Student_Id"  required pattern="[A-Z]{0-9}" title="Please enter valid matric ID[A-Z and 1-15 digit only]" style="...">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Student Total Mark</label>
+      <input type="text" class="form-control" id="Total_Mark" placeholder="Enter Student total mark" name="Total_Mark" required pattern="[0-100}" title="Please enter valid number[0-100 digit only]" style="...">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Comments</label>
+      <input type="text" class="form-control" id="Comment" placeholder="Enter comment" name="Comment" required style="...">
+    </div>
+    <button type="submit" name="insert" class="btn">Insert</button>
+    <button type="submit" name="update" class="btn">Update</button>
+    <button type="submit" name="delete" class="btn">Delete</button>
+  </form>
+</div>
+</div>
 
-<?php
-        while ($row=mysqli_fetch_array($rs_display)){ 
-          ?>
+<div class="col-lg-12">
 
-  <tr>
-    <th rowspan="3" style="width:70px"></th>
-    <th><label for="id">Report ID:</label> &nbsp;
-    <?php echo $row['Report_Id']; ?>
-    </th> 
-    <th><label for="id">Student ID:</label> &nbsp;
-    <?php echo $row['Student_Id']; ?>
-    </th>
-  </tr>
-  <tr>
-    <th><label for="id">Lecturer ID:</label> &nbsp;
-    <?php echo $row['Lecturer_Id']; ?>
-    </th>
-    <th><label for="mark">Total Mark</label> &nbsp;
-    <?php echo $row['Total_Mark']; ?>
-    </th>
-  </tr>
-  <tr>
-    <td>
-      <table>
+<table class="table table-bordered">
+    <thead>
       <tr>
-        <th>Performance Mark</th>
-        <td style="width: 20%;"><input style="height: 30px;" type="number" id="performance_mark" name="performance_mark"></td>
+        <th>Report ID</th>
+        <th>Student Name</th>
+        <th>Student ID</th>
+        <th>Student Total Mark</th>
+        <th>Comments</th>
+        <th>Update</th>
+        <th>Delete</th>
       </tr>
-      <tr>
-        <th>Attendance Mark</th>
-        <td style="width: 20%;"><input style="height: 30px;" type="number" id="attendance_mark" name="attendance_mark"></td>
-      </tr>
-      <tr>
-        <th>Total Mark</th>
-        <td style="width: 20%;"><p id="totalmark"></p></td>
-      </tr>
-      </table>
-    </td>
-    <td><label for="report_comment">Comment:<br>            </label>
-         <input style="width: 100%; height: 30px;" type="text" id="report_comment" name="report_comment"><br><br>
-      <input type="button" value="Internship Marking Result" onclick = "mark()" />
-      <p id="mark"></p>
-    </td>
-  </tr>
+    </thead>
+    <tbody>
+     
+    <?php
 
-  <?php
-        }
-          ?>
+    $res=mysqli_query($link,"select * from report");
+    while($row=mysqli_fetch_array($res))
+    {
+      echo "<tr>";
+      echo "<td>"; echo $row["Report_Id"]; echo"</td>";
+      echo "<td>"; echo $row["Name"]; echo"</td>";
+      echo "<td>"; echo $row["Student_Id"]; echo"</td>";
+      echo "<td>"; echo $row["Total_Mark"]; echo"</td>";
+      echo "<td>"; echo $row["Comment"]; echo"</td>";
+      echo "<td>"; ?> <a href="edit-report.php?id=<?php echo $row["id"];?>"><button type="button" class="btn btn-success">Update</button></a> <?php echo"</td>";
+      echo "<td>"; ?> <a href="delete-report.php?id=<?php echo $row["id"]; ?>"><button type="button" class="btn btn-danger">Delete</button></a> <?php echo"</td>";
+      echo "</tr>";
+    }
 
-</table>
-</form>
-	</body>
-	</form>
-	</article>
-</section>
+
+
+    ?>
+      
+    </tbody>
+  </table>
+
+</div>
 
 <footer>
   <p>&copy 2021 UMP MyLI. All rights reserved.</p>
 </footer>
 </body>
+
+<?php
+if(isset($_POST["insert"]))
+{
+
+
+  mysqli_query($link,"insert into report values (NULL, '$_POST[Report_Id]', '$_POST[Name]','$_POST[Student_Id]','$_POST[Total_Mark]', '$_POST[Comment]')");
+
+  ?>
+  <script type="text/javacsript">
+  window.location.href=window.location.href;
+</script>
+
+<?php
+
+}
+
+if(isset($_POST["delete"]))
+{
+
+  mysqli_query($link,"delete from report where name='$_POST[Name]'") or die(mysqli_error($link));
+
+  ?>
+  <script type="text/javacsript">
+  window.location.href=window.location.href;
+</script>
+
+<?php
+}
+
+if(isset($_POST["update"]))
+{
+  mysqli_query($link,"update report set name='$_POST[Student_Id]' where name='$_POST[Name]'") or die(mysqli_error($link));
+
+  ?>
+  <script type="text/javacsript">
+  window.location.href=window.location.href;
+</script>
+
+<?php
+}
+
+?>
+
 </html>
 <?php
     mysqli_close($link);

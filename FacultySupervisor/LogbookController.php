@@ -3,15 +3,12 @@
 
 	mysqli_select_db($link, "myli") or die(mysqli_error());
     
-    $List_ID = $_POST['List_ID'];
+    $Logbook_ID = $_POST['Logbook_ID'];
     $Student_Id = $_POST['Student_Id'];
-    $Name = $_POST['Name'];
-    $Phone_Num = $_POST['Phone_Num'];
-	$Email = $_POST['Email'];
-	$Company_Name = $_POST['Company_Name'];
-	$Company_Address = $_POST['Company_Address'];
+    $Activity = $_POST['Logbook_Details'];
+	$Date = $_POST['Date'];
 
-    $query = "insert into `studentlist` values('$List_ID', '$Student_Id', '$Name', '$Phone_Num', '$Email', '$Company_Name', '$Company_Address')" or die(mysqli_error());
+    $query = "insert into `logbookprogress` values('$Logbook_ID', '$Student_Id', '$Logbook_Details', '$Date')" or die(mysqli_error());
     $result = mysqli_query($link, $query);
 
 ?>
@@ -49,7 +46,7 @@ input[type="checkbox"] {
     <div class="vertical-menu">
      <a href="./dashboard.php">Lecturer Dashboard</a>
      <a href="./view.php">Student List</a>
-     <a href="./LogbookView.php">LogBook Progress</a>
+     <a href="#">LogBook Progress</a>
      <a href="#">Performance Mark</a>
      <a href="./Report.php">Report</a>
     </div>
@@ -59,35 +56,22 @@ input[type="checkbox"] {
          <div>
             <table style="width:30%; border: 3px solid maroon;" border="1">
                 <tr>
-                    <td><label for="List_ID">List ID:</label></td>
-                    <td colspan="5"><?php echo $List_ID ?></td>
+                    <td><label for="Logbook_ID">Logbook ID:</label></td>
+                    <td colspan="5"><?php echo $Logbook_ID ?></td>
                 </tr>
                 <tr>
                     <td><label for="Student_Id">Student ID:</label></td>
                     <td colspan="5"><?php echo $Student_Id ?></td>
                 </tr>
                 <tr>
-                    <td><label for="Name">Name:</label></td>
-                    <td colspan="5"><?php echo $Name ?></td>
+                    <td><label for="Logbook_Details">Logbook Details:</label></td>
+                    <td colspan="5"><?php echo $Logbook_Details ?></td>
                 </tr>
                 <tr>
-                    <td><label for="Phone_Num">Phone Number:</label></td>
-                    <td colspan="5"><?php echo $Phone_Num ?></td>
-                </tr>
-				<tr>
-                    <td><label for="Email">Email:</label></td>
-                    <td colspan="5"><?php echo $Email ?></td>
-                </tr>
-				<tr>
-                    <td><label for="Company_Name">Company Name:</label></td>
-                    <td colspan="5"><?php echo $Company_Name ?></td>
-                </tr>
-				<tr>
-                    <td><label for="Company_Address">Company Address:</label></td>
-                    <td colspan="5"><?php echo $Company_Address ?></td>
+                    <td><label for="Date">Date:</label></td>
+                    <td colspan="5"><?php echo $Date ?></td>
                 </tr>
 				
- 
             </table><br>
               <br><button onclick="location.href='view.php'">Display List</button>
 			<?php
@@ -95,7 +79,7 @@ input[type="checkbox"] {
 		        echo("Data inserted");
 			}
 		    else {
-			    die("Insert failed. List_ID already exist.");
+			    die("Insert failed. Logbook_ID already exist.");
             }
             mysqli_close($link);
             ?>

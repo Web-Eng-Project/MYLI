@@ -70,13 +70,13 @@ table.center {
 	
 	<article>
 	<h1 style="font-size: 200%">Welcome to MyLI Web</h1>
-    <h1 style="font-size: 100%">You are at the Admin Dashboard</h1>
+    <h1 style="font-size: 100%">You are at the Faculty Supervisor Dashboard</h1>
 	<body>
 	<center>
         <table>
         <div class="vertical-menu">
      <a href="./view.php">Student List</a>
-     <a href="#">LogBook Progress</a>
+     <a href="./LogbookView.php">LogBook Progress</a>
      <a href="#">Performance Mark</a>
      <a href="./Report.php">Report</a>
     </div>

@@ -1,7 +1,7 @@
 <?php
     $link = mysqli_connect("localhost", "root", "") or die(mysqli_connect_error());
     mysqli_select_db($link, "myli") or die(mysqli_error($link));
-    $display = "SELECT * FROM `studentlist`";
+    $display = "SELECT * FROM `logbookprogress`";
     $rs_display = mysqli_query($link, $display) or die(mysqli_error($link));
 ?>
 <!DOCTYPE html>
@@ -11,6 +11,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="ann.css">
+<script src="./js/module4.js"></script>
 <style>
 .vertical-menu {
   width: 420px;
@@ -28,6 +29,9 @@ table class = "center"{
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 50%;
+}
+.makesmall{
+    width:200px;
 }
 
 td, th {
@@ -70,42 +74,73 @@ table.center {
 	</nav>
 	
 	<article>
-	<h1 style="font-size: 200%">Student List</h1>
+	<h1 style="font-size: 200%">Logbook Progress</h1>
 	<body>
 	<center>
         <table>
-            <tr>
-					<th>List ID</th>
+        <tr>
+					<th>Logbook ID</th>
 					<th>Student ID</th>
-					<th>Name</th>
-					<th>Phone Number</th>
-					<th>Email</th>
-					<th>Company details</th>
-					<th>Address</th>
-			</tr>
-			<?php
+					<th>Activity</th>
+					<th>Date</th>
+			  </tr>
+
+			  <?php
           while ($row=mysqli_fetch_array($rs_display)){
-      ?>
-            <tr style="text-align:center";>
-            <td colspan="1"><?php echo $row['List_ID']?></td>
-            <td colspan="1"><?php echo $row['Student_Id']?></td>
-            <td colspan="1"><?php echo $row['Name']?></td>
-            <td colspan="1"><?php echo $row['Phone_Num']?></td>
-						<td colspan="1"><?php echo $row['Email']?></td>
-						<td colspan="1"><?php echo $row['Company_Name']?></td>
-						<td colspan="1"><?php echo $row['Company_Address']?></td>
-            </tr>
-			<?php
-             }
-      ?>
-			
+        ?>
+          <tr style="text-align:center";>
+          <td colspan="1"><?php echo $row['Logbook_Id']?></td>
+          <td colspan="1"><?php echo $row['Student_Id']?></td>
+          <td colspan="1"><?php echo $row['Logbook_Details']?></td>
+          <td colspan="1"><?php echo $row['Date']?></td>
+          </tr>
         </table>
         <br>
+        <br>
+        <br>
+        
+        <table>
+            <tr>
+                <td>Assessment Type</td>
+                <td>Total Percentage</td>
+                <td>Total Marks</td>
+                <td style="max-width:10%;">Student Marks</td>
+                <td>Percentage</td>
+            </tr>
+            <tr>
+                <th>Evaluation 1 Mark</th>
+                <th>60%</th>
+                <th>50</th>
+                <th><input type="text" id="midsem" size="3" value=""></th>
+                <th><div class="makesmall" id="outputdiv2"></div></th>
+            </tr>
+
+            <tr>
+                <th>Evaluation 2 Mark</th>
+                <th>40%</th>
+                <th>50</th>
+                <th><input type="text" id="endsem" size="3" value=""></th>
+                <th><div class="makesmall" id="outputdiv3"></div></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Total Marks </th>
+                <th><div class="makesmall" id="outputdiv"></div></th>
+            </tr>
+        </table>
+
+        <br>
+        <br>
+        <br>
+            <input type="button" value="Process" onclick="Percentage()">
+                        <input type="reset">
+                        <hr>
+         <?php
+             }
+         ?>
     </center>
 	</body>
-                
-  <br><button onclick="location.href='UpdateList.php'">Add Student</button><button onclick="location.href='DeleteStudent.php'">Delete Student</button><br>
-	</form>
 	</article>
 </section>
 

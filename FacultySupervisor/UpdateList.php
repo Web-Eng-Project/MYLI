@@ -32,7 +32,7 @@ input[type="checkbox"] {
     <div class="vertical-menu">
      <a href="./dashboard.php">Lecturer Dashboard</a>
      <a href="./view.php">Student List</a>
-     <a href="#">LogBook Progress</a>
+     <a href="./LogbookView.php">LogBook Progress</a>
      <a href="#">Performance Mark</a>
      <a href="./Report.php">Report</a>
     </div>
