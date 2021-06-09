@@ -67,16 +67,15 @@ table.center {
     <div class="vertical-menu">
     <a href="./dashboard.php">Lecturer Dashboard</a>
      <a href="./view.php">Student List</a>
-     <a href="./LogbookView.php">LogBook Progress</a>
-     <a href="#">Performance Mark</a>
+     <a href="./LogbookView.php">Student Progress</a>
      <a href="./Report.php">Report</a>
     </div>
 	</nav>
 	
 	<article>
-	<h1 style="font-size: 200%">Logbook Progress</h1>
 	<body>
 	<center>
+  <h1 style="font-size: 200%">Logbook</h1>
         <table>
         <tr>
 					<th>Logbook ID</th>

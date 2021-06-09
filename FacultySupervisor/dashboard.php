@@ -76,8 +76,7 @@ table.center {
         <table>
         <div class="vertical-menu">
      <a href="./view.php">Student List</a>
-     <a href="./LogbookView.php">LogBook Progress</a>
-     <a href="#">Performance Mark</a>
+     <a href="./LogbookView.php">Student Progress</a>
      <a href="./Report.php">Report</a>
     </div>
 						

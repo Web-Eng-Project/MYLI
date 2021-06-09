@@ -1,6 +1,22 @@
 <?php
-    $link = mysqli_connect("localhost", "root", "") or die(mysqli_connect_error());
-    mysqli_select_db($link, "myli") or die(mysqli_error($link));
+$link = mysqli_connect("localhost", "root", "") or die(mysqli_connect_error());
+mysqli_select_db($link, "myli") or die(mysqli_error($link));
+$id=$_GET["id"];
+
+$Name="";
+$Student_Id="";
+$Total_Mark="";
+$Comment="";
+
+
+$res=mysqli_query($link,"select * from `report` where id=$id");
+while($row=mysqli_fetch_array($res))
+{
+   $Name=$row["Name"];
+   $Student_Id=$row["Student_Id"];
+   $Total_Mark=$row["Total_Mark"];
+   $Comment=$row["Comment"];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,15 +63,12 @@ input[type="checkbox"] {
      <a href="./Report.php">Report</a>
     </div>
 	</nav>
-	
-	<article>
-	<h1 style="font-size: 200%">Report</h1>
-	<body>
-	<div class="container">
+    
+<div class="container">
   <div class="col-lg-4">
-  <h2>Supervisor Report</h2>
+  <h2>Update Report</h2>
   <form action="" name="form1" method="post" enctype="multipart/form-data">
-  
+
     <div class="form-group">
       <label for="email">Student Name</label>
       <input type="text" class="form-control" id="Name" placeholder="Enter Student Name" name="Name" required style="...">
@@ -73,76 +86,39 @@ input[type="checkbox"] {
       <input type="text" class="form-control" id="Comment" placeholder="Enter comment" name="Comment" required style="...">
     </div>
 
-    <button type="submit" name="insert" class="btn">Insert</button>
-    <button class="btn btn3" onclick="document.location='qr.php'">QR CODE</button>
-    <br>
-    <br>
+   
+    <button type="submit" name="update" class="btn">Update</button>
+  
   </form>
 </div>
 </div>
-
-<div class="col-lg-12">
-
-<table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Report ID</th>
-        <th>Student Name</th>
-        <th>Student ID</th>
-        <th>Student Total Mark</th>
-        <th>Comments</th>
-        <th>Update</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-     
-    <?php
-
-    $res=mysqli_query($link,"select * from `report`");
-    while($row=mysqli_fetch_array($res))
-    {
-      echo "<tr>";
-      echo "<td>"; echo $row["id"]; echo"</td>";
-      echo "<td>"; echo $row["Name"]; echo"</td>";
-      echo "<td>"; echo $row["Student_Id"]; echo"</td>";
-      echo "<td>"; echo $row["Total_Mark"]; echo"</td>";
-      echo "<td>"; echo $row["Comment"]; echo"</td>";
-      echo "<td>"; ?> <a href="edit-report.php?id=<?php echo $row["id"];?>"><button type="button" class="btn btn-success">Update</button></a> <?php echo"</td>";
-      echo "<td>"; ?> <a href="delete-report.php?id=<?php echo $row["id"]; ?>"><button type="button" class="btn btn-danger">Delete</button></a> <?php echo"</td>";
-      echo "</tr>";
-    }
-
-
-
-    ?>
-      
-    </tbody>
-  </table>
 
 </div>
 
 <footer>
   <p>&copy 2021 UMP MyLI. All rights reserved.</p>
 </footer>
+
+
 </body>
 
 <?php
-if(isset($_POST["insert"]))
+if(isset($_POST["update"]))
 {
 
+    mysqli_query($link,"update `report` set Name='$_POST[Name]', Student_Id='$_POST[Student_Id]', Total_Mark='$_POST[Total_Mark]', Comment='$_POST[Comment]' where id=$id");
+  
 
-  mysqli_query($link,"insert into `report` values (NULL, '$_POST[Name]','$_POST[Student_Id]','$_POST[Total_Mark]', '$_POST[Comment]')");
 
-  ?>
-  <script type="text/javacsript">
-  window.location.href=window.location.href;
-</script>
+    
+    ?>
 
-<?php
+    <script type="text/javascript">
+    window.location="Report.php";
+    </script>
+
+    <?php
 
 }
 
 ?>
-
-</html>
